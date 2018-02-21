@@ -36,9 +36,9 @@ namespace WindowsFormsApplication5
         {
             GameEventArgs args = eventArgs as GameEventArgs;
 
-            if (this.InvokeRequired)
+            if (InvokeRequired)
             {
-                this.Invoke(new ShowMessageDelegate(ShowMessgae), args);
+                Invoke(new ShowMessageDelegate(ShowMessgae), args);
             }
             else
             {
@@ -50,7 +50,7 @@ namespace WindowsFormsApplication5
         {
             MessageBox.Show(this, args.ToString());
 
-            var msg = MessageBox.Show(this, "Do you wish to try again?");
+            var msg = MessageBox.Show(this, "Do you wish to try again?","New Game",MessageBoxButtons.YesNo);
 
             if (msg == DialogResult.No)
                 Close();

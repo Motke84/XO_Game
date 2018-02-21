@@ -48,7 +48,10 @@ namespace WindowsFormsApplication5.UserControls
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
-            SqureClicked?.Invoke(this, new EventArgs());
+            if (SqureStatus == Enums.SqureState.Empty)
+                SqureClicked?.Invoke(this, new EventArgs());
+            else
+                MessageBox.Show(this, "Cannt click none empty squre");
         }
 
 
