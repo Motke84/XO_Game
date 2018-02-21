@@ -11,14 +11,14 @@ namespace WindowsFormsApplication5.Entities
 {
     public class GameManager
     {
-        private readonly List<GameSqure> _list;
+        private readonly List<GameCell> _list;
         private readonly List<Player> _players;
         public event EventHandler GameEnds;
 
 
         public Player CurrentPlayer { get; set; }
 
-        public GameManager(List<GameSqure> list)
+        public GameManager(List<GameCell> list)
         {
             _players = new List<Player>();
             _list = list;
@@ -31,7 +31,7 @@ namespace WindowsFormsApplication5.Entities
 
         private void SqureWasOnClicked(object sender, EventArgs eventArgs)
         {
-            if (!(sender is GameSqure gameSqure))
+            if (!(sender is GameCell gameSqure))
                 return;
 
             gameSqure.SqureStatus = CurrentPlayer.State;
@@ -66,7 +66,7 @@ namespace WindowsFormsApplication5.Entities
 
         public Enums.GameStatus CheckWinningPlayer(ref Player winningPlayer)
         {
-            #region Horzontal Winning Condtion
+            #region Horizontal Winning Condition
 
             //Winning Condition For First Row   
 
@@ -90,7 +90,7 @@ namespace WindowsFormsApplication5.Entities
             }
             #endregion
 
-            #region vertical Winning Condtion
+            #region Vertical Winning Condition
             //Winning Condition For First Column       
             if (FindIfSquresAreEqual(_list[0], _list[3], _list[6]))
             {
@@ -128,7 +128,7 @@ namespace WindowsFormsApplication5.Entities
 
             #region Checking For Draw
             // If all the cells or values filled with X or O then any player has won the match  
-            if (_list.All(sq => sq.SqureStatus != Enums.SqureState.Empty))
+            if (_list.All(sq => sq.SqureStatus != Enums.CellState.Empty))
             {
                 return Enums.GameStatus.NoneWon;
             }
@@ -140,16 +140,16 @@ namespace WindowsFormsApplication5.Entities
 
         }
 
-        private bool FindIfSquresAreEqual(GameSqure gameSqure1, GameSqure gameSqure2, GameSqure gameSqure3)
+        private bool FindIfSquresAreEqual(GameCell gameSqure1, GameCell gameSqure2, GameCell gameSqure3)
         {
-            return  (gameSqure1.SqureStatus != Enums.SqureState.Empty &&
-                gameSqure2.SqureStatus != Enums.SqureState.Empty &&
-                gameSqure3.SqureStatus != Enums.SqureState.Empty &&
+            return  (gameSqure1.SqureStatus != Enums.CellState.Empty &&
+                gameSqure2.SqureStatus != Enums.CellState.Empty &&
+                gameSqure3.SqureStatus != Enums.CellState.Empty &&
                 gameSqure1.SqureStatus == gameSqure2.SqureStatus &&
                 gameSqure2.SqureStatus == gameSqure3.SqureStatus) ;
         }
 
-        Player FindWinningPlayer(Enums.SqureState state)
+        Player FindWinningPlayer(Enums.CellState state)
         {
             return _players.First(pl => pl.State == state);
         }
@@ -157,15 +157,15 @@ namespace WindowsFormsApplication5.Entities
 
         public void CreateNewPlayers(List<string> playerNames)
         {
-            _players.Add(new Player(1, playerNames[0], Enums.SqureState.X));
-            _players.Add(new Player(2, playerNames[1], Enums.SqureState.O));
+            _players.Add(new Player(1, playerNames[0], Enums.CellState.X));
+            _players.Add(new Player(2, playerNames[1], Enums.CellState.O));
             CurrentPlayer = _players[0];
         }
 
         internal void Reload()
         {
             CurrentPlayer = _players.First();
-            _list.ForEach(sq => sq.SqureStatus = Enums.SqureState.Empty);
+            _list.ForEach(sq => sq.SqureStatus = Enums.CellState.Empty);
         }
     }
 

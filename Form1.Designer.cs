@@ -29,15 +29,15 @@
         private void InitializeComponent()
         {
             this.gamePanel = new System.Windows.Forms.Panel();
-            this.gameSqure9 = new WindowsFormsApplication5.UserControls.GameSqure();
-            this.gameSqure8 = new WindowsFormsApplication5.UserControls.GameSqure();
-            this.gameSqure7 = new WindowsFormsApplication5.UserControls.GameSqure();
-            this.gameSqure6 = new WindowsFormsApplication5.UserControls.GameSqure();
-            this.gameSqure5 = new WindowsFormsApplication5.UserControls.GameSqure();
-            this.gameSqure4 = new WindowsFormsApplication5.UserControls.GameSqure();
-            this.gameSqure3 = new WindowsFormsApplication5.UserControls.GameSqure();
-            this.gameSqure2 = new WindowsFormsApplication5.UserControls.GameSqure();
-            this.gameSqure1 = new WindowsFormsApplication5.UserControls.GameSqure();
+            this.gameSqure9 = new WindowsFormsApplication5.UserControls.GameCell();
+            this.gameSqure8 = new WindowsFormsApplication5.UserControls.GameCell();
+            this.gameSqure7 = new WindowsFormsApplication5.UserControls.GameCell();
+            this.gameSqure6 = new WindowsFormsApplication5.UserControls.GameCell();
+            this.gameSqure5 = new WindowsFormsApplication5.UserControls.GameCell();
+            this.gameSqure4 = new WindowsFormsApplication5.UserControls.GameCell();
+            this.gameSqure3 = new WindowsFormsApplication5.UserControls.GameCell();
+            this.gameSqure2 = new WindowsFormsApplication5.UserControls.GameCell();
+            this.gameSqure1 = new WindowsFormsApplication5.UserControls.GameCell();
             this.btn_startGame = new System.Windows.Forms.Button();
             this.txt_player1 = new System.Windows.Forms.TextBox();
             this.playerPanel = new System.Windows.Forms.Panel();
@@ -73,7 +73,7 @@
             this.gameSqure9.Name = "gameSqure9";
             this.gameSqure9.Size = new System.Drawing.Size(63, 64);
             this.gameSqure9.SqureId = 9;
-            this.gameSqure9.SqureStatus = WindowsFormsApplication5.Utils.Enums.SqureState.Empty;
+            this.gameSqure9.SqureStatus = WindowsFormsApplication5.Utils.Enums.CellState.Empty;
             this.gameSqure9.TabIndex = 8;
             // 
             // gameSqure8
@@ -82,7 +82,7 @@
             this.gameSqure8.Name = "gameSqure8";
             this.gameSqure8.Size = new System.Drawing.Size(63, 64);
             this.gameSqure8.SqureId = 8;
-            this.gameSqure8.SqureStatus = WindowsFormsApplication5.Utils.Enums.SqureState.Empty;
+            this.gameSqure8.SqureStatus = WindowsFormsApplication5.Utils.Enums.CellState.Empty;
             this.gameSqure8.TabIndex = 7;
             // 
             // gameSqure7
@@ -91,7 +91,7 @@
             this.gameSqure7.Name = "gameSqure7";
             this.gameSqure7.Size = new System.Drawing.Size(63, 64);
             this.gameSqure7.SqureId = 7;
-            this.gameSqure7.SqureStatus = WindowsFormsApplication5.Utils.Enums.SqureState.Empty;
+            this.gameSqure7.SqureStatus = WindowsFormsApplication5.Utils.Enums.CellState.Empty;
             this.gameSqure7.TabIndex = 6;
             // 
             // gameSqure6
@@ -100,7 +100,7 @@
             this.gameSqure6.Name = "gameSqure6";
             this.gameSqure6.Size = new System.Drawing.Size(63, 64);
             this.gameSqure6.SqureId = 6;
-            this.gameSqure6.SqureStatus = WindowsFormsApplication5.Utils.Enums.SqureState.Empty;
+            this.gameSqure6.SqureStatus = WindowsFormsApplication5.Utils.Enums.CellState.Empty;
             this.gameSqure6.TabIndex = 5;
             // 
             // gameSqure5
@@ -109,7 +109,7 @@
             this.gameSqure5.Name = "gameSqure5";
             this.gameSqure5.Size = new System.Drawing.Size(63, 64);
             this.gameSqure5.SqureId = 5;
-            this.gameSqure5.SqureStatus = WindowsFormsApplication5.Utils.Enums.SqureState.Empty;
+            this.gameSqure5.SqureStatus = WindowsFormsApplication5.Utils.Enums.CellState.Empty;
             this.gameSqure5.TabIndex = 4;
             // 
             // gameSqure4
@@ -118,7 +118,7 @@
             this.gameSqure4.Name = "gameSqure4";
             this.gameSqure4.Size = new System.Drawing.Size(63, 64);
             this.gameSqure4.SqureId = 4;
-            this.gameSqure4.SqureStatus = WindowsFormsApplication5.Utils.Enums.SqureState.Empty;
+            this.gameSqure4.SqureStatus = WindowsFormsApplication5.Utils.Enums.CellState.Empty;
             this.gameSqure4.TabIndex = 3;
             // 
             // gameSqure3
@@ -127,7 +127,7 @@
             this.gameSqure3.Name = "gameSqure3";
             this.gameSqure3.Size = new System.Drawing.Size(63, 64);
             this.gameSqure3.SqureId = 3;
-            this.gameSqure3.SqureStatus = WindowsFormsApplication5.Utils.Enums.SqureState.Empty;
+            this.gameSqure3.SqureStatus = WindowsFormsApplication5.Utils.Enums.CellState.Empty;
             this.gameSqure3.TabIndex = 2;
             // 
             // gameSqure2
@@ -136,7 +136,7 @@
             this.gameSqure2.Name = "gameSqure2";
             this.gameSqure2.Size = new System.Drawing.Size(63, 64);
             this.gameSqure2.SqureId = 2;
-            this.gameSqure2.SqureStatus = WindowsFormsApplication5.Utils.Enums.SqureState.Empty;
+            this.gameSqure2.SqureStatus = WindowsFormsApplication5.Utils.Enums.CellState.Empty;
             this.gameSqure2.TabIndex = 1;
             // 
             // gameSqure1
@@ -145,7 +145,7 @@
             this.gameSqure1.Name = "gameSqure1";
             this.gameSqure1.Size = new System.Drawing.Size(63, 64);
             this.gameSqure1.SqureId = 1;
-            this.gameSqure1.SqureStatus = WindowsFormsApplication5.Utils.Enums.SqureState.Empty;
+            this.gameSqure1.SqureStatus = WindowsFormsApplication5.Utils.Enums.CellState.Empty;
             this.gameSqure1.TabIndex = 0;
             // 
             // btn_startGame
@@ -242,15 +242,15 @@
         #endregion
 
         private System.Windows.Forms.Panel gamePanel;
-        private UserControls.GameSqure gameSqure1;
-        private UserControls.GameSqure gameSqure9;
-        private UserControls.GameSqure gameSqure8;
-        private UserControls.GameSqure gameSqure7;
-        private UserControls.GameSqure gameSqure6;
-        private UserControls.GameSqure gameSqure5;
-        private UserControls.GameSqure gameSqure4;
-        private UserControls.GameSqure gameSqure3;
-        private UserControls.GameSqure gameSqure2;
+        private UserControls.GameCell gameSqure1;
+        private UserControls.GameCell gameSqure9;
+        private UserControls.GameCell gameSqure8;
+        private UserControls.GameCell gameSqure7;
+        private UserControls.GameCell gameSqure6;
+        private UserControls.GameCell gameSqure5;
+        private UserControls.GameCell gameSqure4;
+        private UserControls.GameCell gameSqure3;
+        private UserControls.GameCell gameSqure2;
         private System.Windows.Forms.Button btn_startGame;
         private System.Windows.Forms.TextBox txt_player1;
         private System.Windows.Forms.Panel playerPanel;

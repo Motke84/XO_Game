@@ -11,21 +11,21 @@ using WindowsFormsApplication5.Utils;
 
 namespace WindowsFormsApplication5.UserControls
 {
-    public partial class GameSqure : UserControl
+    public partial class GameCell : UserControl
     {    
         public event EventHandler SqureClicked;
 
-        private Enums.SqureState _mSqureState;
+        private Enums.CellState _mSqureState;
        
 
-        public GameSqure()
+        public GameCell()
         {
             InitializeComponent();
         }
 
         public int SqureId { get; set; }
 
-        public Enums.SqureState SqureStatus
+        public Enums.CellState SqureStatus
         {
             get => _mSqureState;
             set
@@ -33,13 +33,13 @@ namespace WindowsFormsApplication5.UserControls
                 _mSqureState = value;
                 switch (value)
                 {
-                    case Enums.SqureState.X:
+                    case Enums.CellState.X:
                         pictureBox1.Image = Resources.X;
                         break;
-                    case Enums.SqureState.O:
+                    case Enums.CellState.O:
                         pictureBox1.Image = Resources.O;
                         break;
-                    case Enums.SqureState.Empty:
+                    case Enums.CellState.Empty:
                         pictureBox1.Image = Resources.Empty;
                         break;
                 }
@@ -48,7 +48,7 @@ namespace WindowsFormsApplication5.UserControls
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
-            if (SqureStatus == Enums.SqureState.Empty)
+            if (SqureStatus == Enums.CellState.Empty)
                 SqureClicked?.Invoke(this, new EventArgs());
             else
                 MessageBox.Show(this, "Cannt click none empty squre");
@@ -61,9 +61,9 @@ namespace WindowsFormsApplication5.UserControls
 
     public class SqureClickArgs : EventArgs
     {
-        public GameSqure GameSqure { get; }
+        public GameCell GameSqure { get; }
 
-        public SqureClickArgs(GameSqure gameSqure)
+        public SqureClickArgs(GameCell gameSqure)
         {
             GameSqure = gameSqure;
         }

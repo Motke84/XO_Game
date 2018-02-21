@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApplication5.UserControls
 {
-    partial class GameSqure
+    partial class GameCell
     {
         /// <summary>
         /// Required designer variable.

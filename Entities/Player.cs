@@ -8,7 +8,7 @@ namespace WindowsFormsApplication5.Entities
 {
     public class Player
     {
-        public Player(int id, string name, Enums.SqureState state)
+        public Player(int id, string name, Enums.CellState state)
         {
             Name = name;
             State = state;
@@ -21,6 +21,6 @@ namespace WindowsFormsApplication5.Entities
 
         public int Score { get; set; }
 
-        public Enums.SqureState State { get; }
+        public Enums.CellState State { get; }
     }
 }

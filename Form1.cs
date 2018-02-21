@@ -25,7 +25,7 @@ namespace WindowsFormsApplication5
         private void Form1_Load(object sender, EventArgs e)
         {
             gamePanel.Enabled = false;
-            var squres = gamePanel.Controls.OfType<GameSqure>().OrderBy(sq => sq.SqureId).ToList();
+            var squres = gamePanel.Controls.OfType<GameCell>().OrderBy(sq => sq.SqureId).ToList();
 
             _gameManager = new GameManager(squres);
             _gameManager.GameEnds+= GameManagerOnGameEnds;

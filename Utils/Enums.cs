@@ -7,7 +7,7 @@ namespace WindowsFormsApplication5.Utils
 {
     public class Enums
     {
-        public enum SqureState
+        public enum CellState
         {
             Empty,
             X,
