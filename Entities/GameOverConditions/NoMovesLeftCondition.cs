@@ -4,9 +4,6 @@ using TicTacToe.Utils;
 
 namespace TicTacToe.Entities.GameOverConditions
 {
-    /// <summary>
-    /// Represents a game over condition where there are no more moves left in the game. You need to be careful to check this condition after all win conditions.
-    /// </summary>
     public class NoMovesLeftCondition : IGameEndCondition
     {
       

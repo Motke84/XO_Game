@@ -20,8 +20,8 @@ namespace TicTacToe.Entities
 
         public IPlayer CurrentPlayer { get; set; }
 
-        public GameManager(IGamgeDisplay gameDisplay ,
-            IPlayerManager playerManager, 
+        public GameManager(IGamgeDisplay gameDisplay,
+            IPlayerManager playerManager,
             IGameBoard board,
             IGameMoveValidator gameMoveValidator,
             List<IGameEndCondition> conditions)
@@ -40,7 +40,7 @@ namespace TicTacToe.Entities
 
         public void CellWasClicked(CellCord cellCord)
         {
-            if (_gameMoveValidator.InvalidMove(_board,cellCord))
+            if (_gameMoveValidator.InvalidMove(_board, cellCord))
                 _gameDisplay.ShowMessage($"Player: {CurrentPlayer.Name} Not Valid Move");
             else
             {

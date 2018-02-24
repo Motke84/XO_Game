@@ -6,9 +6,6 @@ using TicTacToe.Utils;
 
 namespace SolidTacToe.GameOverConditions
 {
-    /// <summary>
-    /// Represents a game over condition where the game was won horizontally
-    /// </summary>
     public class HorizontalWinCondition : IGameEndCondition
     {
   

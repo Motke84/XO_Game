@@ -44,7 +44,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\GameEventArgs.cs" />
     <Compile Include="Entities\GameManager.cs" />
     <Compile Include="Entities\GameOverConditions\DiagonalWinCondition.cs" />
     <Compile Include="Entities\GameOverConditions\HorizontalWinCondition.cs" />

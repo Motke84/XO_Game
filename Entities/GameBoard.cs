@@ -3,10 +3,8 @@ using TicTacToe.Utils;
 
 namespace TicTacToe.Entities
 {
-  
     public class GameBoard: IGameBoard
     {
-
         public GameBoard(int size)
         {
             Size = size;
@@ -17,7 +15,6 @@ namespace TicTacToe.Entities
 
         public Enums.Symbol[,] Cells { get;  set; }
        
-
         public Enums.Symbol Get(int x, int y)
         {
             return Cells[x, y];

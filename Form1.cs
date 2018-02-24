@@ -19,7 +19,6 @@ namespace TicTacToe
     {
         private const int Size = 3;
         private GameManager _gameManager;
-        public delegate void ShowMessageDelegate(string message);
 
         public Form1()
         {
@@ -39,35 +38,6 @@ namespace TicTacToe
             if (eventArgs is CellClickArgs cellClickArgs)
                 _gameManager.CellWasClicked(cellClickArgs.CellCord);
         }
-
-        private void GameManagerOnGameEnds(object sender, EventArgs eventArgs)
-        {
-            GameEventArgs args = eventArgs as GameEventArgs;
-
-            if (InvokeRequired)
-            {
-                //Invoke(new ShowMessageDelegate(ShowMessgae), args);
-            }
-            else
-            {
-                ShowMessgae(args);
-            }
-        }
-
-        private void ShowMessgae(GameEventArgs args)
-        {
-            MessageBox.Show(this, args.ToString());
-
-            var msg = MessageBox.Show(this, "Do you wish to try again?", "New Game", MessageBoxButtons.YesNo);
-
-            if (msg == DialogResult.No)
-                Close();
-            else
-            {
-                //  _gameManager.Reload();
-            }
-        }
-
 
         private void btn_startGame_Click(object sender, EventArgs e)
         {
