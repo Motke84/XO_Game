@@ -7,7 +7,7 @@ namespace WindowsFormsApplication5.Utils
 {
     public class Enums
     {
-        public enum CellState
+        public enum Symbol
         {
             Empty,
             X,
@@ -16,8 +16,7 @@ namespace WindowsFormsApplication5.Utils
 
         public enum GameStatus
         {
-            Continue,
-            NoneWon,
+            Tie,
             PlayerWon,
         }
         

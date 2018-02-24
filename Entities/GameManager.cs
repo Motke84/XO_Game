@@ -1,194 +1,80 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsFormsApplication5.Entities.GameOverConditions;
+using WindowsFormsApplication5.Interfaces;
 using WindowsFormsApplication5.UserControls;
 using WindowsFormsApplication5.Utils;
 
 namespace WindowsFormsApplication5.Entities
 {
-    public class GameManager
+    public class GameManager : IReloaded
     {
-        private readonly List<GameCell> _list;
-        private readonly List<Player> _players;
-        public event EventHandler GameEnds;
-
+        private readonly IGamgeDisplay _gameDisplay;
+        private readonly IPlayerManager _playerManager;
+        private readonly IGameBoard _board;
+        private readonly List<IGameEndCondition> _conditions;
 
         public Player CurrentPlayer { get; set; }
 
-        public GameManager(List<GameCell> list)
+        public GameManager(IGamgeDisplay gameDisplay ,
+            IPlayerManager playerManager, 
+            IGameBoard board,
+            List<IGameEndCondition> conditions)
         {
-            _players = new List<Player>();
-            _list = list;
-            _list.ForEach(sq =>
-            {
-                sq.SqureClicked += SqureWasOnClicked;
+            _gameDisplay = gameDisplay;
+            _board = board;
+            _conditions = conditions;
+            _playerManager = playerManager;
 
-            });
+            _gameDisplay.GenerateBoard(_board.Cells);
+
+            CurrentPlayer = _playerManager.GetCurrentPlayer();
+            _gameDisplay.ShowMessage($"Player: {CurrentPlayer.Name} Turn");
         }
 
-        private void SqureWasOnClicked(object sender, EventArgs eventArgs)
+        public void CellWasClicked(CellCord cellCord)
         {
-            if (!(sender is GameCell gameSqure))
-                return;
-
-            gameSqure.SqureStatus = CurrentPlayer.State;
-
-
-            Task.Factory.StartNew(() =>
-            {
-                Player player = null;
-                var gameState = CheckWinningPlayer(ref player);
-                switch (gameState)
-                {
-                    case Enums.GameStatus.NoneWon:
-                        GameEnds(this, new GameEventArgs("A Tie", gameState));
-                        break;
-                    case Enums.GameStatus.PlayerWon:
-                        GameEnds(this, new GameEventArgs(player.Name, gameState));
-                        break;
-                }
-            });
-        }
-
-        private void ContinueWithGame()
-        {
-            if (CurrentPlayer == _players.Last())
-                CurrentPlayer = _players.First();
+            if (_board.Get(cellCord.X, cellCord.Y) != Enums.Symbol.Empty)
+                _gameDisplay.ShowMessage($"Player: {CurrentPlayer.Name} Not Valid Move");
             else
             {
-                int index = CurrentPlayer.Id;
-                CurrentPlayer = _players[index];
+                _board.Set(CurrentPlayer.Symbol,cellCord.X, cellCord.Y);
+                _gameDisplay.SetCell(cellCord, CurrentPlayer.Symbol);
+
+                var condition = _conditions.FirstOrDefault(e => e.ConditionMet(CurrentPlayer.Symbol, _board));
+
+                if (condition == null)
+                {
+                    CurrentPlayer = _playerManager.Next();
+                    _gameDisplay.ShowMessage($"Player: {CurrentPlayer.Name} Turn");
+                }
+                else
+                {
+                    switch (condition.GameStatus)
+                    {
+                        case Enums.GameStatus.PlayerWon:
+                            _gameDisplay.ShowMessage($"Player {CurrentPlayer.Name} Won");
+                            break;
+                        case Enums.GameStatus.Tie:
+                            _gameDisplay.ShowMessage("No Player Won");
+                            break;
+                    }
+
+                    _gameDisplay.GameEnded();
+                }
+
             }
         }
 
-        public Enums.GameStatus CheckWinningPlayer(ref Player winningPlayer)
+        public void Reload()
         {
-            #region Horizontal Winning Condition
-
-            //Winning Condition For First Row   
-
-            if (FindIfSquresAreEqual(_list[0], _list[1], _list[2]))
-            {
-                winningPlayer = FindWinningPlayer(_list[0].SqureStatus);
-                return Enums.GameStatus.PlayerWon;
-
-            }
-            //Winning Condition For Second Row   
-            if (FindIfSquresAreEqual(_list[3], _list[4], _list[5]))
-            {
-                winningPlayer = FindWinningPlayer(_list[3].SqureStatus);
-                return Enums.GameStatus.PlayerWon;
-            }
-            //Winning Condition For Third Row   
-            if (FindIfSquresAreEqual(_list[6], _list[7], _list[8]))
-            {
-                winningPlayer = FindWinningPlayer(_list[6].SqureStatus);
-                return Enums.GameStatus.PlayerWon;
-            }
-            #endregion
-
-            #region Vertical Winning Condition
-            //Winning Condition For First Column       
-            if (FindIfSquresAreEqual(_list[0], _list[3], _list[6]))
-            {
-                winningPlayer = FindWinningPlayer(_list[0].SqureStatus);
-                return Enums.GameStatus.PlayerWon;
-            }
-            //Winning Condition For Second Column  
-            if (FindIfSquresAreEqual(_list[1], _list[4], _list[7]))
-            {
-                winningPlayer = FindWinningPlayer(_list[1].SqureStatus);
-                return Enums.GameStatus.PlayerWon;
-            }
-            //Winning Condition For Third Column  
-            if (FindIfSquresAreEqual(_list[2], _list[5], _list[8]))
-            {
-                winningPlayer = FindWinningPlayer(_list[2].SqureStatus);
-                return Enums.GameStatus.PlayerWon;
-            }
-            #endregion
-
-            #region Diagonal Winning Condition
-
-            if (FindIfSquresAreEqual(_list[0], _list[4], _list[8]))
-            {
-                winningPlayer = FindWinningPlayer(_list[0].SqureStatus);
-                return Enums.GameStatus.PlayerWon;
-            }
-
-            if (FindIfSquresAreEqual(_list[2], _list[4], _list[6]))
-            {
-                winningPlayer = FindWinningPlayer(_list[2].SqureStatus);
-                return Enums.GameStatus.PlayerWon;
-            }
-            #endregion
-
-            #region Checking For Draw
-            // If all the cells or values filled with X or O then any player has won the match  
-            if (_list.All(sq => sq.SqureStatus != Enums.CellState.Empty))
-            {
-                return Enums.GameStatus.NoneWon;
-            }
-            #endregion
-
-
-            ContinueWithGame();
-            return Enums.GameStatus.Continue;
-
-        }
-
-        private bool FindIfSquresAreEqual(GameCell gameSqure1, GameCell gameSqure2, GameCell gameSqure3)
-        {
-            return  (gameSqure1.SqureStatus != Enums.CellState.Empty &&
-                gameSqure2.SqureStatus != Enums.CellState.Empty &&
-                gameSqure3.SqureStatus != Enums.CellState.Empty &&
-                gameSqure1.SqureStatus == gameSqure2.SqureStatus &&
-                gameSqure2.SqureStatus == gameSqure3.SqureStatus) ;
-        }
-
-        Player FindWinningPlayer(Enums.CellState state)
-        {
-            return _players.First(pl => pl.State == state);
-        }
-
-
-        public void CreateNewPlayers(List<string> playerNames)
-        {
-            _players.Add(new Player(1, playerNames[0], Enums.CellState.X));
-            _players.Add(new Player(2, playerNames[1], Enums.CellState.O));
-            CurrentPlayer = _players[0];
-        }
-
-        internal void Reload()
-        {
-            CurrentPlayer = _players.First();
-            _list.ForEach(sq => sq.SqureStatus = Enums.CellState.Empty);
-        }
-    }
-
-    public class GameEventArgs : EventArgs
-    {
-        private Enums.GameStatus _gameState;
-        private string _name;
-   
-        public GameEventArgs(string name, Enums.GameStatus gameState)
-        {
-            _name = name;
-            _gameState = gameState;
-        }
-
-        public string Name => _name;
-
-        public Enums.GameStatus GameState => _gameState;
-
-        public override string ToString()
-        {
-            return _gameState == Enums.GameStatus.NoneWon ? 
-                "A Tie" : 
-                $"player: {_name} won";
+            _playerManager.Reload();
+            CurrentPlayer = _playerManager.GetCurrentPlayer();
+            _board.Reload();
+            _gameDisplay.ShowMessage($"Player: {CurrentPlayer.Name} Turn");
         }
     }
 }

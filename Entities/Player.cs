@@ -8,19 +8,16 @@ namespace WindowsFormsApplication5.Entities
 {
     public class Player
     {
-        public Player(int id, string name, Enums.CellState state)
+        public Player(string name, Enums.Symbol symbol)
         {
             Name = name;
-            State = state;
-            Id = id;
+            Symbol = symbol;
         }
 
         public string Name { get; }
 
-        public int Id { get; }
-
         public int Score { get; set; }
 
-        public Enums.CellState State { get; }
+        public Enums.Symbol Symbol { get; }
     }
 }
