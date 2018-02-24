@@ -1,7 +1,7 @@
-﻿using WindowsFormsApplication5.Interfaces;
-using WindowsFormsApplication5.Utils;
+﻿using TicTacToe.Interfaces;
+using TicTacToe.Utils;
 
-namespace WindowsFormsApplication5.Entities.GameOverConditions
+namespace TicTacToe.Entities.GameOverConditions
 {
  
     public class DiagonalWinCondition : IGameEndCondition

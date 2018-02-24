@@ -1,8 +1,8 @@
 ﻿
-using WindowsFormsApplication5.Entities;
-using WindowsFormsApplication5.Entities.GameOverConditions;
-using WindowsFormsApplication5.Interfaces;
-using WindowsFormsApplication5.Utils;
+using TicTacToe.Entities;
+using TicTacToe.Entities.GameOverConditions;
+using TicTacToe.Interfaces;
+using TicTacToe.Utils;
 
 namespace SolidTacToe.GameOverConditions
 {

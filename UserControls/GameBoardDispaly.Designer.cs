@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsApplication5.UserControls
+﻿namespace TicTacToe.UserControls
 {
     partial class GameBoardDispaly
     {

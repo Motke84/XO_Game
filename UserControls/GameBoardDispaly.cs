@@ -6,10 +6,10 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using WindowsFormsApplication5.Interfaces;
-using WindowsFormsApplication5.Utils;
+using TicTacToe.Interfaces;
+using TicTacToe.Utils;
 
-namespace WindowsFormsApplication5.UserControls
+namespace TicTacToe.UserControls
 {
     public partial class GameBoardDispaly : UserControl , IReloaded
     {

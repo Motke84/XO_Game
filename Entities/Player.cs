@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using WindowsFormsApplication5.Utils;
+using TicTacToe.Utils;
 
-namespace WindowsFormsApplication5.Entities
+namespace TicTacToe.Entities
 {
     public class Player : IPlayer
     {

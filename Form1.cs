@@ -6,14 +6,14 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using WindowsFormsApplication5.Entities;
-using WindowsFormsApplication5.Entities.GameOverConditions;
-using WindowsFormsApplication5.Interfaces;
-using WindowsFormsApplication5.UserControls;
-using WindowsFormsApplication5.Utils;
+using TicTacToe.Entities;
+using TicTacToe.Entities.GameOverConditions;
+using TicTacToe.Interfaces;
+using TicTacToe.UserControls;
+using TicTacToe.Utils;
 using SolidTacToe.GameOverConditions;
 
-namespace WindowsFormsApplication5
+namespace TicTacToe
 {
     public partial class Form1 : Form, IGamgeDisplay
     {

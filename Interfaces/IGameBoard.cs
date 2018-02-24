@@ -1,6 +1,6 @@
-using WindowsFormsApplication5.Utils;
+using TicTacToe.Utils;
 
-namespace WindowsFormsApplication5.Interfaces
+namespace TicTacToe.Interfaces
 {
     public interface IGameBoard : IReloaded
     {

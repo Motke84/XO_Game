@@ -1,8 +1,8 @@
 ﻿
-using WindowsFormsApplication5.Interfaces;
-using WindowsFormsApplication5.Utils;
+using TicTacToe.Interfaces;
+using TicTacToe.Utils;
 
-namespace WindowsFormsApplication5.Entities.GameOverConditions
+namespace TicTacToe.Entities.GameOverConditions
 {
     /// <summary>
     /// Represents a game over condition where there are no more moves left in the game. You need to be careful to check this condition after all win conditions.

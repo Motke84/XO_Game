@@ -1,4 +1,4 @@
-namespace WindowsFormsApplication5.Utils
+namespace TicTacToe.Utils
 {
     public struct CellCord
     {

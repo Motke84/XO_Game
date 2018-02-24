@@ -1,7 +1,7 @@
-using WindowsFormsApplication5.UserControls;
-using WindowsFormsApplication5.Utils;
+using TicTacToe.UserControls;
+using TicTacToe.Utils;
 
-namespace WindowsFormsApplication5.Interfaces
+namespace TicTacToe.Interfaces
 {
     public interface IGameMoveValidator
     {

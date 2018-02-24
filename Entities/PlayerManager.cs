@@ -1,7 +1,7 @@
-﻿using WindowsFormsApplication5.Interfaces;
-using WindowsFormsApplication5.Utils;
+﻿using TicTacToe.Interfaces;
+using TicTacToe.Utils;
 
-namespace WindowsFormsApplication5.Entities
+namespace TicTacToe.Entities
 {
     
     public class PlayerManager : IPlayerManager

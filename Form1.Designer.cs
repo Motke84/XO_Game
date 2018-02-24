@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsApplication5
+﻿namespace TicTacToe
 {
     partial class Form1
     {
@@ -37,7 +37,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txt_player2 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.gameBoardDispaly1 = new WindowsFormsApplication5.UserControls.GameBoardDispaly();
+            this.gameBoardDispaly1 = new TicTacToe.UserControls.GameBoardDispaly();
             this.gamePanel.SuspendLayout();
             this.playerPanel.SuspendLayout();
             this.SuspendLayout();

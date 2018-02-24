@@ -1,6 +1,6 @@
-using WindowsFormsApplication5.Entities;
+using TicTacToe.Entities;
 
-namespace WindowsFormsApplication5.Interfaces
+namespace TicTacToe.Interfaces
 {
     public interface IPlayerManager : IReloaded
     {

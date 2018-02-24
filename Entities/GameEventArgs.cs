@@ -1,7 +1,7 @@
 ﻿using System;
-using WindowsFormsApplication5.Utils;
+using TicTacToe.Utils;
 
-namespace WindowsFormsApplication5.Entities
+namespace TicTacToe.Entities
 {
     public class GameEventArgs : EventArgs
     {

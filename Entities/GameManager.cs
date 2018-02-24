@@ -3,12 +3,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WindowsFormsApplication5.Entities.GameOverConditions;
-using WindowsFormsApplication5.Interfaces;
-using WindowsFormsApplication5.UserControls;
-using WindowsFormsApplication5.Utils;
+using TicTacToe.Entities.GameOverConditions;
+using TicTacToe.Interfaces;
+using TicTacToe.UserControls;
+using TicTacToe.Utils;
 
-namespace WindowsFormsApplication5.Entities
+namespace TicTacToe.Entities
 {
     public class GameManager : IGameManager, IReloaded
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WindowsFormsApplication5.Interfaces
+namespace TicTacToe.Interfaces
 {
     public interface IReloaded
     {

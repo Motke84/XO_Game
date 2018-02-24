@@ -1,7 +1,7 @@
-﻿using WindowsFormsApplication5.Entities;
-using WindowsFormsApplication5.Utils;
+﻿using TicTacToe.Entities;
+using TicTacToe.Utils;
 
-namespace WindowsFormsApplication5.Interfaces
+namespace TicTacToe.Interfaces
 {
     public interface IGameEndCondition
     {
