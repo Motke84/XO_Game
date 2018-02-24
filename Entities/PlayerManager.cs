@@ -7,24 +7,24 @@ namespace WindowsFormsApplication5.Entities
     public class PlayerManager : IPlayerManager
     {
 
-        public PlayerManager(string playerOneName, string playerTwoName)
+        public PlayerManager(IPlayer playerOne, IPlayer playerTwo)
         {
+            PlayerOne = playerOne;
+            PlayerTwo = playerTwo;
             _turn = 0;
-            PlayerOne = new Player(playerOneName, Enums.Symbol.X);
-            PlayerTwo = new Player(playerTwoName, Enums.Symbol.O);
         }
 
-        public Player PlayerOne { get; set; }
-        public Player PlayerTwo { get; set; }
+        public IPlayer PlayerOne { get; set; }
+        public IPlayer PlayerTwo { get; set; }
 
         private int _turn;
 
-        public Player Next()
+        public IPlayer Next()
         {
             return GetPlayer(++_turn);
         }
 
-        public Player GetCurrentPlayer()
+        public IPlayer GetCurrentPlayer()
         {
             return GetPlayer(_turn);
         }
@@ -34,7 +34,7 @@ namespace WindowsFormsApplication5.Entities
             _turn = 0;
         }
 
-        private Player GetPlayer(int turn)
+        private IPlayer GetPlayer(int turn)
         {
             return (turn & 1) == 0 ? PlayerOne : PlayerTwo;
         }

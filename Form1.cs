@@ -17,13 +17,14 @@ namespace WindowsFormsApplication5
 {
     public partial class Form1 : Form, IGamgeDisplay
     {
-
+        private const int Size = 3;
         private GameManager _gameManager;
         public delegate void ShowMessageDelegate(string message);
 
         public Form1()
         {
             InitializeComponent();
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -31,7 +32,6 @@ namespace WindowsFormsApplication5
             gamePanel.Enabled = false;
 
             gameBoardDispaly1.CellClicked += GameBoardOnCellClicked;
-
         }
 
         private void GameBoardOnCellClicked(object sender, EventArgs eventArgs)
@@ -64,20 +64,22 @@ namespace WindowsFormsApplication5
                 Close();
             else
             {
-              //  _gameManager.Reload();
+                //  _gameManager.Reload();
             }
         }
 
 
         private void btn_startGame_Click(object sender, EventArgs e)
         {
+            var player1 = txt_player1.Text;
+            var player2 = txt_player2.Text;
 
-            string player1 = txt_player1.Text;
-            string player2 = txt_player2.Text;
+            IPlayer playerOne = new Player(player1, Enums.Symbol.X);
+            IPlayer playerTwo = new Player(player2, Enums.Symbol.O);
 
-            IPlayerManager playerManager = new PlayerManager(player1, player2);
+            IPlayerManager playerManager = new PlayerManager(playerOne, playerTwo);
 
-            IGameBoard board = new GameBoard(3);
+            IGameBoard board = new GameBoard(Size);
 
             var conditions = new List<IGameEndCondition>()
             {
@@ -87,7 +89,9 @@ namespace WindowsFormsApplication5
                 new VerticalWinCondition()
             };
 
-            _gameManager = new GameManager(this, playerManager, board, conditions);
+            IGameMoveValidator gameMoveValidator = new GameMoveValidator();
+
+            _gameManager = new GameManager(this, playerManager, board, gameMoveValidator, conditions);
 
             gamePanel.Enabled = true;
             playerPanel.Enabled = false;
@@ -108,10 +112,10 @@ namespace WindowsFormsApplication5
             gameBoardDispaly1.SetCell(cellCord, cellState);
         }
 
-        public void GameEnded()
+        public void GameEnded(string messgae)
         {
             gameBoardDispaly1.Enabled = false;
-            var msg = MessageBox.Show(this, "Do you wish to play again?", "New Game", MessageBoxButtons.YesNo);
+            var msg = MessageBox.Show(this, "Do you wish to play again?", messgae, MessageBoxButtons.YesNo);
 
             if (msg == DialogResult.No)
                 Close();
@@ -122,13 +126,5 @@ namespace WindowsFormsApplication5
                 _gameManager.Reload();
             }
         }
-    }
-
-    public interface IGamgeDisplay
-    {
-        void GenerateBoard(Enums.Symbol[,] grid);
-        void ShowMessage(string messgae);
-        void SetCell(CellCord cellCord, Enums.Symbol cellState);
-        void GameEnded();
     }
 }

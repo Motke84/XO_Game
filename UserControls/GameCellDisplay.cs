@@ -27,8 +27,10 @@ namespace WindowsFormsApplication5.UserControls
 
         public CellCord CellCord { get; set; }
 
+        [Description("Set control state"), Category("Data")]
         public Enums.Symbol CellState
         {
+            get => _cellState;
             set
             {
                 _cellState = value;
@@ -57,13 +59,6 @@ namespace WindowsFormsApplication5.UserControls
         {
             CellState = Enums.Symbol.Empty;
         }
-    }
-
-    public struct CellCord
-    {
-
-        public int X { get; set; }
-        public int Y { get; set; }
     }
 
     public class CellClickArgs : EventArgs

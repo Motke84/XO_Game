@@ -10,22 +10,25 @@ using WindowsFormsApplication5.Utils;
 
 namespace WindowsFormsApplication5.Entities
 {
-    public class GameManager : IReloaded
+    public class GameManager : IGameManager, IReloaded
     {
         private readonly IGamgeDisplay _gameDisplay;
         private readonly IPlayerManager _playerManager;
         private readonly IGameBoard _board;
+        private readonly IGameMoveValidator _gameMoveValidator;
         private readonly List<IGameEndCondition> _conditions;
 
-        public Player CurrentPlayer { get; set; }
+        public IPlayer CurrentPlayer { get; set; }
 
         public GameManager(IGamgeDisplay gameDisplay ,
             IPlayerManager playerManager, 
             IGameBoard board,
+            IGameMoveValidator gameMoveValidator,
             List<IGameEndCondition> conditions)
         {
             _gameDisplay = gameDisplay;
             _board = board;
+            _gameMoveValidator = gameMoveValidator;
             _conditions = conditions;
             _playerManager = playerManager;
 
@@ -37,33 +40,21 @@ namespace WindowsFormsApplication5.Entities
 
         public void CellWasClicked(CellCord cellCord)
         {
-            if (_board.Get(cellCord.X, cellCord.Y) != Enums.Symbol.Empty)
+            if (_gameMoveValidator.InvalidMove(_board,cellCord))
                 _gameDisplay.ShowMessage($"Player: {CurrentPlayer.Name} Not Valid Move");
             else
             {
-                _board.Set(CurrentPlayer.Symbol,cellCord.X, cellCord.Y);
-                _gameDisplay.SetCell(cellCord, CurrentPlayer.Symbol);
+                UpdateBoard(cellCord);
 
                 var condition = _conditions.FirstOrDefault(e => e.ConditionMet(CurrentPlayer.Symbol, _board));
 
                 if (condition == null)
                 {
-                    CurrentPlayer = _playerManager.Next();
-                    _gameDisplay.ShowMessage($"Player: {CurrentPlayer.Name} Turn");
+                    GameContinues();
                 }
                 else
                 {
-                    switch (condition.GameStatus)
-                    {
-                        case Enums.GameStatus.PlayerWon:
-                            _gameDisplay.ShowMessage($"Player {CurrentPlayer.Name} Won");
-                            break;
-                        case Enums.GameStatus.Tie:
-                            _gameDisplay.ShowMessage("No Player Won");
-                            break;
-                    }
-
-                    _gameDisplay.GameEnded();
+                    GameEnded(condition);
                 }
 
             }
@@ -76,5 +67,36 @@ namespace WindowsFormsApplication5.Entities
             _board.Reload();
             _gameDisplay.ShowMessage($"Player: {CurrentPlayer.Name} Turn");
         }
+
+        private void GameEnded(IGameEndCondition condition)
+        {
+            string msg = string.Empty;
+
+            switch (condition.GameStatus)
+            {
+                case Enums.GameStatus.PlayerWon:
+                    msg = $"Player {CurrentPlayer.Name} Won";
+                    break;
+                case Enums.GameStatus.Tie:
+                    msg = "It's a Tie";
+                    break;
+            }
+
+            _gameDisplay.ShowMessage(msg);
+            _gameDisplay.GameEnded(msg);
+        }
+
+        private void GameContinues()
+        {
+            CurrentPlayer = _playerManager.Next();
+            _gameDisplay.ShowMessage($"Player: {CurrentPlayer.Name} Turn");
+        }
+
+        private void UpdateBoard(CellCord cellCord)
+        {
+            _board.Set(CurrentPlayer.Symbol, cellCord.X, cellCord.Y);
+            _gameDisplay.SetCell(cellCord, CurrentPlayer.Symbol);
+        }
+
     }
 }

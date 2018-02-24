@@ -44,17 +44,19 @@
             // 
             // gamePanel
             // 
+            this.gamePanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.gamePanel.Controls.Add(this.gameBoardDispaly1);
             this.gamePanel.Controls.Add(this.gameLabel);
-            this.gamePanel.Location = new System.Drawing.Point(45, 65);
+            this.gamePanel.Location = new System.Drawing.Point(43, 33);
             this.gamePanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.gamePanel.Name = "gamePanel";
-            this.gamePanel.Size = new System.Drawing.Size(409, 414);
+            this.gamePanel.Size = new System.Drawing.Size(389, 387);
             this.gamePanel.TabIndex = 0;
             // 
             // gameLabel
             // 
             this.gameLabel.AutoSize = true;
-            this.gameLabel.Location = new System.Drawing.Point(37, 35);
+            this.gameLabel.Location = new System.Drawing.Point(37, 15);
             this.gameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.gameLabel.Name = "gameLabel";
             this.gameLabel.Size = new System.Drawing.Size(74, 20);
@@ -63,10 +65,10 @@
             // 
             // btn_startGame
             // 
-            this.btn_startGame.Location = new System.Drawing.Point(51, 218);
+            this.btn_startGame.Location = new System.Drawing.Point(30, 216);
             this.btn_startGame.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_startGame.Name = "btn_startGame";
-            this.btn_startGame.Size = new System.Drawing.Size(112, 35);
+            this.btn_startGame.Size = new System.Drawing.Size(148, 35);
             this.btn_startGame.TabIndex = 1;
             this.btn_startGame.Text = "Strat";
             this.btn_startGame.UseVisualStyleBackColor = true;
@@ -74,7 +76,7 @@
             // 
             // txt_player1
             // 
-            this.txt_player1.Location = new System.Drawing.Point(51, 78);
+            this.txt_player1.Location = new System.Drawing.Point(30, 78);
             this.txt_player1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txt_player1.Name = "txt_player1";
             this.txt_player1.Size = new System.Drawing.Size(148, 26);
@@ -82,22 +84,23 @@
             // 
             // playerPanel
             // 
+            this.playerPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.playerPanel.Controls.Add(this.label3);
             this.playerPanel.Controls.Add(this.label2);
             this.playerPanel.Controls.Add(this.btn_startGame);
             this.playerPanel.Controls.Add(this.txt_player2);
             this.playerPanel.Controls.Add(this.label1);
             this.playerPanel.Controls.Add(this.txt_player1);
-            this.playerPanel.Location = new System.Drawing.Point(506, 65);
+            this.playerPanel.Location = new System.Drawing.Point(479, 33);
             this.playerPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.playerPanel.Name = "playerPanel";
-            this.playerPanel.Size = new System.Drawing.Size(230, 334);
+            this.playerPanel.Size = new System.Drawing.Size(209, 290);
             this.playerPanel.TabIndex = 3;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(46, 15);
+            this.label3.Location = new System.Drawing.Point(30, 15);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(148, 20);
@@ -107,16 +110,16 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(46, 132);
+            this.label2.Location = new System.Drawing.Point(35, 132);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(65, 20);
+            this.label2.Size = new System.Drawing.Size(91, 20);
             this.label2.TabIndex = 5;
-            this.label2.Text = "Player 2";
+            this.label2.Text = "Player 2 (O)";
             // 
             // txt_player2
             // 
-            this.txt_player2.Location = new System.Drawing.Point(51, 157);
+            this.txt_player2.Location = new System.Drawing.Point(30, 157);
             this.txt_player2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txt_player2.Name = "txt_player2";
             this.txt_player2.Size = new System.Drawing.Size(148, 26);
@@ -125,30 +128,31 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(46, 54);
+            this.label1.Location = new System.Drawing.Point(35, 53);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 20);
+            this.label1.Size = new System.Drawing.Size(90, 20);
             this.label1.TabIndex = 3;
-            this.label1.Text = "Player 1";
+            this.label1.Text = "Player 1 (X)";
             // 
             // gameBoardDispaly1
             // 
             this.gameBoardDispaly1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.gameBoardDispaly1.Location = new System.Drawing.Point(86, 143);
+            this.gameBoardDispaly1.Location = new System.Drawing.Point(41, 54);
             this.gameBoardDispaly1.Name = "gameBoardDispaly1";
-            this.gameBoardDispaly1.Size = new System.Drawing.Size(302, 301);
+            this.gameBoardDispaly1.Size = new System.Drawing.Size(300, 305);
             this.gameBoardDispaly1.TabIndex = 8;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(806, 513);
-            this.Controls.Add(this.gameBoardDispaly1);
+            this.ClientSize = new System.Drawing.Size(733, 457);
             this.Controls.Add(this.playerPanel);
             this.Controls.Add(this.gamePanel);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Form1";
             this.Text = "Tic-Tac-Toe";
             this.Load += new System.EventHandler(this.Form1_Load);

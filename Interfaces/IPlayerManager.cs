@@ -4,10 +4,8 @@ namespace WindowsFormsApplication5.Interfaces
 {
     public interface IPlayerManager : IReloaded
     {
-        Player Next();
+        IPlayer Next();
 
-        Player GetCurrentPlayer();
-
-        void Reload();
+        IPlayer GetCurrentPlayer();
     }
 }

@@ -6,7 +6,7 @@ using WindowsFormsApplication5.Utils;
 
 namespace WindowsFormsApplication5.Entities
 {
-    public class Player
+    public class Player : IPlayer
     {
         public Player(string name, Enums.Symbol symbol)
         {
@@ -19,5 +19,14 @@ namespace WindowsFormsApplication5.Entities
         public int Score { get; set; }
 
         public Enums.Symbol Symbol { get; }
+    }
+
+    public interface IPlayer
+    {
+        string Name { get; }
+
+        int Score { get; set; }
+
+        Enums.Symbol Symbol { get; }
     }
 }
